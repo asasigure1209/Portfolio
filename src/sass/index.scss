@@ -1,3 +1,81 @@
-h1 {
-    color: red;
+$baseBackGround: #333333;
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.top-container {
+    overflow: hidden;
+    width: 100%;
+    height: 100vh;
+    background-color: $baseBackGround;
+    position: relative;
+
+    &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        border-top: 60px solid transparent;
+        border-left: 50vw solid white;
+        border-right: 50vw solid transparent;
+        border-bottom: 60px solid white;
+    }
+
+    .top {
+        text-align: center;
+        position: absolute;
+        left: 50%;
+        bottom: 50%;
+        transform: translate(-50%, 50%);
+
+        img {
+            width: 60vw;
+            max-width: 360px;
+        }
+
+        h1 {
+            color: white;
+            font-size: calc(48px + 3vw);
+            margin: 0;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+
+            li {
+                font-size: calc(48px + 1vw);
+                display: inline-block;
+            }
+        }
+    }
+}
+
+.base-column {
+    height: 100%;
+    width: 88%;
+    max-width: 840px;
+    margin: 0 auto;
+    position: relative;
+}
+
+main {
+    height: 100vh;
+}
+
+.twitter {
+    color: #5CC4FF;
+}
+
+.facebook {
+    color: #5CA7FF;
+}
+
+.github {
+    color: #111111;
 }
