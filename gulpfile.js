@@ -3,11 +3,10 @@ const sass = require('gulp-sass')
 const autoprefixer = require('gulp-autoprefixer')
 const uglify = require('gulp-uglify')
 const browser = require('browser-sync')
-const pug = require('gulp-pug')
 
-const SASS_PATH = 'src/sass/**/*.sass'
+const HTML_PATH = 'src/*.html'
+const SCSS_PATH = 'src/sass/**/*.scss'
 const JS_PATH = 'src/js/**/*.js'
-const PUG_PATH = 'src/pug/**/*.pug'
 const CSS_OUTPUT_PATH = './dist/css'
 const JS_OUTPUT_PATH = './dist/js'
 const HTML_OUTPUT_PATH = './dist'
@@ -20,8 +19,14 @@ task('server', () => {
     })
 })
 
+task('html', () => {
+    return src(HTML_PATH)
+        .pipe(dest(HTML_OUTPUT_PATH))
+        .pipe(browser.reload({stream: true}))
+})
+
 task('sass', () => {
-    return src(SASS_PATH)
+    return src(SCSS_PATH)
         .pipe(sass())
         .pipe(autoprefixer())
         .pipe(dest(CSS_OUTPUT_PATH))
@@ -35,17 +40,10 @@ task('js', () => {
         .pipe(browser.reload({stream: true}))
 })
 
-task('pug', () => {
-    return src(PUG_PATH)
-        .pipe(pug())
-        .pipe(dest(HTML_OUTPUT_PATH))
-        .pipe(browser.reload({stream: true}))
-})
-
 task('watch', () => {
-    watch(SASS_PATH, task('sass'))
+    watch(HTML_PATH, task('html'))
+    watch(SCSS_PATH, task('sass'))
     watch(JS_PATH, task('js'))
-    watch(PUG_PATH, task('pug'))
 }) 
 
 task('default', parallel(
