@@ -64,8 +64,150 @@ body {
     position: relative;
 }
 
-main {
-    height: 100vh;
+h2 {
+    color: $baseBackGround;
+    font-size: calc(40px + 1vw);
+    margin-top: 0;
+}
+
+.column-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    .myface {
+        width: 75%;
+    }
+
+    .about-text {
+        h3 {
+            color: #FFAE8B;
+            font-size: calc(28px + 1vw);
+            margin: 0;
+        }
+
+        p {
+            font-size: calc(18px + 0.4vw);
+            color: $baseBackGround;
+            margin-top: 0;
+        }
+    }
+
+    @media screen and (max-width: 760px) {
+        grid-template-columns: 1fr;
+
+        .myface {
+            width: 100%;
+        }
+    }
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.column {
+    flex: 50%;
+
+    img {
+        vertical-align: middle;
+        width: 100%;
+    }
+
+    @media screen and (max-width: 760px) {
+        flex: 100%;
+    }
+}
+
+.about, .contents, .skills {
+    margin-bottom: 60px;
+}
+
+.skill {
+    color: $baseBackGround;
+    margin-left: 24px;
+
+    h3 {
+        font-size: calc(24px + 0.4vw);
+        margin-bottom: 0;
+    }
+
+    p {
+        margin-top: 0;
+    }
+}
+
+.timeline-list {
+    position: relative;
+    margin-left: 24px;
+    padding: 24px 0 24px 40px;
+
+    &::before {
+        content: "";
+        border-left: 6px solid #5CA7FF;
+        position: absolute;
+        left: 16px;
+        bottom: 0;
+        top: 0;
+    }
+
+    li {
+        position: relative;
+        list-style: none;
+
+        &::before {
+            content: "";
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            left: -42px;
+            border-radius: 50%;
+            background: none repeat scroll 0% 0% #5CA7FF;
+        }
+
+        .event {
+            padding-left: 18px;
+            color: $baseBackGround;
+
+            h3 {
+                font-size: calc(24px + 0.4vw);
+                margin-bottom: 0;
+            }
+
+            p {
+                font-size: 18px;
+            }
+        }
+    }
+}
+
+footer {
+    width: 100%;
+    height: 120px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+        content: "";
+        display: block;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        border-top: 60px solid transparent;
+        border-left: 50vw solid $baseBackGround;
+        border-right: 50vw solid transparent;
+        border-bottom: 60px solid $baseBackGround;
+    }
+
+    p {
+        margin: 8px 0;
+        position: absolute;
+        bottom: 0;
+        color: white;
+        left: 50%;
+        transform: translateX(-50%);
+    }
 }
 
 .twitter {
