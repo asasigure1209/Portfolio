@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { Noto_Serif_JP } from "next/font/google";
 import "./globals.css";
+import React from "react";
 
 const notoSerifJP = Noto_Serif_JP({ weight: ["400"], subsets: ["latin"] });
 
@@ -12,8 +13,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  modal,
 }: Readonly<{
   children: React.ReactNode;
+  modal: React.ReactNode;
 }>) {
   return (
     <html lang="ja">
@@ -56,6 +59,7 @@ export default function RootLayout({
           </div>
           {children}
         </div>
+        {modal}
       </body>
     </html>
   );
