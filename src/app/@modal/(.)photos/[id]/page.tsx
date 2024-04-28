@@ -2,10 +2,14 @@
 
 import { type ElementRef, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+import { getPhotoById } from "@/data/photsData";
+import { useWindowSize } from "@/hooks/useWindowSize";
 
 export default function Modal({ params: { id } }: { params: { id: string } }) {
   const router = useRouter();
   const dialogRef = useRef<ElementRef<"dialog">>(null);
+  const { windowSize } = useWindowSize();
 
   useEffect(() => {
     if (!dialogRef.current?.open) {
@@ -13,16 +17,46 @@ export default function Modal({ params: { id } }: { params: { id: string } }) {
     }
   }, []);
 
+  const photo = getPhotoById(parseInt(id));
+
+  if (photo === undefined) {
+    return <p>画像が見つかりませんでした</p>;
+  }
+
+  // 画像が画面に収まるようなサイズ計算
+  const naturalWidth = photo.width;
+  const naturalHeight = photo.height;
+  const windowRatio = windowSize.width / windowSize.height;
+  const imageRatio = naturalWidth / naturalHeight;
+  let width, height;
+
+  if (windowRatio > imageRatio) {
+    height = windowSize.height;
+    width = height * imageRatio;
+  } else {
+    width = windowSize.width;
+    height = width / imageRatio;
+  }
+
+  height *= 0.6;
+  width = height * imageRatio;
+
   function onDismiss() {
     router.back();
   }
 
   return (
-    <dialog ref={dialogRef} className="modal" onClose={onDismiss}>
-      {id}
-      <button onClick={onDismiss} className="close-button">
-        モーダルを閉じる
-      </button>
+    <dialog ref={dialogRef} onClose={onDismiss}>
+      <Image
+        src={`/photos/${photo.fileName}`}
+        alt={photo.alt}
+        width={photo.width}
+        height={photo.height}
+        style={{
+          width: `${width}px`,
+          height: `${height}px`,
+        }}
+      ></Image>
     </dialog>
   );
 }
