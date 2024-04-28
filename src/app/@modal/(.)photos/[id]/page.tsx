@@ -23,8 +23,6 @@ export default function Modal({ params: { id } }: { params: { id: string } }) {
     0.8,
   );
 
-  console.log(width, height);
-
   if (photo === undefined) {
     return <p>画像が見つかりませんでした</p>;
   }
@@ -38,17 +36,20 @@ export default function Modal({ params: { id } }: { params: { id: string } }) {
       ref={dialogRef}
       onClose={onDismiss}
       onClick={onDismiss}
-      className="backdrop:bg-[rgba(0,0,0,0.6)]"
+      className="backdrop:bg-[rgba(0,0,0,0.6)] bg-transparent"
     >
       {height !== 0 && width !== 0 && (
-        <Image
-          src={`/photos/${photo.fileName}`}
-          alt={photo.alt}
-          width={width}
-          height={height}
-          style={{ width, height }}
-          className="bg-black"
-        ></Image>
+        <>
+          <h1 className="text-center text-white mb-2">{photo.alt}</h1>
+          <Image
+            src={`/photos/${photo.fileName}`}
+            alt={photo.alt}
+            width={width}
+            height={height}
+            style={{ width, height }}
+            className="bg-black"
+          ></Image>
+        </>
       )}
     </dialog>
   );
