@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Noto_Serif_JP } from "next/font/google";
 import "./globals.css";
 import React from "react";
+import Link from "next/link";
 
 const notoSerifJP = Noto_Serif_JP({ weight: ["400"], subsets: ["latin"] });
 
@@ -31,30 +32,9 @@ export default function RootLayout({
               priority
             />
             <nav className="flex items-center font-mono">
-              <a
-                className="pointer-events-auto mx-4"
-                href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                engineering
-              </a>
-              <a
-                className="pointer-events-auto mx-4"
-                href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                photos/videos
-              </a>
-              <a
-                className="pointer-events-auto mx-4"
-                href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                about
-              </a>
+              <Link className="pointer-events-auto mx-4" href="/">
+                photos
+              </Link>
             </nav>
           </header>
           <main className="w-full max-w-5xl flex flex-col items-center justify-between mt-24">
