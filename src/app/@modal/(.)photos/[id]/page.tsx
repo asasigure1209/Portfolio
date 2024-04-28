@@ -38,7 +38,7 @@ export default function Modal({ params: { id } }: { params: { id: string } }) {
     height = width / imageRatio;
   }
 
-  height *= 0.6;
+  height *= 0.8;
   width = height * imageRatio;
 
   function onDismiss() {
@@ -46,7 +46,12 @@ export default function Modal({ params: { id } }: { params: { id: string } }) {
   }
 
   return (
-    <dialog ref={dialogRef} onClose={onDismiss}>
+    <dialog
+      ref={dialogRef}
+      onClose={onDismiss}
+      onClick={onDismiss}
+      className="backdrop:bg-[rgba(0,0,0,0.6)]"
+    >
       <Image
         src={`/photos/${photo.fileName}`}
         alt={photo.alt}
@@ -56,6 +61,7 @@ export default function Modal({ params: { id } }: { params: { id: string } }) {
           width: `${width}px`,
           height: `${height}px`,
         }}
+        className="bg-black"
       ></Image>
     </dialog>
   );
