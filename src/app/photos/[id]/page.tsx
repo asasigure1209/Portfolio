@@ -20,16 +20,16 @@ export default function Modal({ params: { id } }: { params: { id: string } }) {
   }
 
   return (
-    <>
+    <div className="relative flex flex-col items-center">
       <h1 className="mb-10">{photo.alt}</h1>
       <Image
         src={`/photos/${photo.fileName}`}
         alt={photo.alt}
-        width={photo.width}
-        height={photo.height}
-        className="bg-black w-full"
+        fill
+        sizes="(max-width: 1024px) 100vw, 1024px"
+        className="bg-black w-full !relative !h-auto"
         priority
       ></Image>
-    </>
+    </div>
   );
 }
