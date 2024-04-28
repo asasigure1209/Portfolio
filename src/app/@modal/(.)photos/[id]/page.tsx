@@ -52,17 +52,15 @@ export default function Modal({ params: { id } }: { params: { id: string } }) {
       onClick={onDismiss}
       className="backdrop:bg-[rgba(0,0,0,0.6)]"
     >
-      <Image
-        src={`/photos/${photo.fileName}`}
-        alt={photo.alt}
-        width={photo.width}
-        height={photo.height}
-        style={{
-          width: `${width}px`,
-          height: `${height}px`,
-        }}
-        className="bg-black"
-      ></Image>
+      {height !== 0 && width !== 0 && (
+        <Image
+          src={`/photos/${photo.fileName}`}
+          alt={photo.alt}
+          width={width}
+          height={height}
+          className="bg-black"
+        ></Image>
+      )}
     </dialog>
   );
 }
