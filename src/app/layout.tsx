@@ -22,7 +22,7 @@ export default function RootLayout({
     <html lang="ja">
       <body className={notoSerifJP.className}>
         <div className="flex min-h-screen flex-col items-center justify-start md:p-24 p-4">
-          <div className="z-10 w-full max-w-5xl items-center justify-between flex">
+          <header className="z-10 w-full max-w-5xl items-center justify-between flex">
             <Image
               src="/asasigure.svg"
               alt="asasigure logo"
@@ -56,7 +56,7 @@ export default function RootLayout({
                 about
               </a>
             </nav>
-          </div>
+          </header>
           <main className="w-full max-w-5xl flex flex-col items-center justify-between mt-24">
             {children}
           </main>

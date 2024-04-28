@@ -4,12 +4,12 @@ import { type ElementRef, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { getPhotoById } from "@/data/photsData";
-import { useWindowSize } from "@/hooks/useWindowSize";
+import { useImageSizeOnTheScreen } from "@/hooks/useImageSizeOnTheScreen";
 
 export default function Modal({ params: { id } }: { params: { id: string } }) {
   const router = useRouter();
   const dialogRef = useRef<ElementRef<"dialog">>(null);
-  const { windowSize } = useWindowSize();
+  const photo = getPhotoById(parseInt(id));
 
   useEffect(() => {
     if (!dialogRef.current?.open) {
@@ -17,29 +17,17 @@ export default function Modal({ params: { id } }: { params: { id: string } }) {
     }
   }, []);
 
-  const photo = getPhotoById(parseInt(id));
+  const [width, height] = useImageSizeOnTheScreen(
+    photo?.width || 0,
+    photo?.height || 0,
+    0.8,
+  );
+
+  console.log(width, height);
 
   if (photo === undefined) {
     return <p>画像が見つかりませんでした</p>;
   }
-
-  // 画像が画面に収まるようなサイズ計算
-  const naturalWidth = photo.width;
-  const naturalHeight = photo.height;
-  const windowRatio = windowSize.width / windowSize.height;
-  const imageRatio = naturalWidth / naturalHeight;
-  let width, height;
-
-  if (windowRatio > imageRatio) {
-    height = windowSize.height;
-    width = height * imageRatio;
-  } else {
-    width = windowSize.width;
-    height = width / imageRatio;
-  }
-
-  height *= 0.8;
-  width = height * imageRatio;
 
   function onDismiss() {
     router.back();
@@ -58,6 +46,7 @@ export default function Modal({ params: { id } }: { params: { id: string } }) {
           alt={photo.alt}
           width={width}
           height={height}
+          style={{ width, height }}
           className="bg-black"
         ></Image>
       )}
