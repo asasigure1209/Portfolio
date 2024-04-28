@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <>
-      <h1 className="mt-24 mb-10">お気に入りの写真</h1>
+      <h1 className="mb-10">お気に入りの写真</h1>
 
       <div className="grid text-center w-full max-w-5xl grid-cols-[repeat(auto-fill,minmax(256px,1fr))] gap-4">
         {photosData.contents.map((photo) => (
