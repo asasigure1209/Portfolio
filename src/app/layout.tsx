@@ -5,7 +5,7 @@ import "./globals.css";
 import React from "react";
 import Link from "next/link";
 
-const notoSerifJP = Noto_Serif_JP({ weight: ["400"], subsets: ["latin"] });
+const notoSerifJP = Noto_Serif_JP({ weight: ["200"], subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "asasigure",
