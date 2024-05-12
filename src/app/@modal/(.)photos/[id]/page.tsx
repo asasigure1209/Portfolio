@@ -44,6 +44,9 @@ export default function Modal({ params: { id } }: { params: { id: string } }) {
           <Image
             src={`/photos/${photo.fileName}`}
             alt={photo.alt}
+            placeholder="blur"
+            blurDataURL={photo.blurDataURL}
+            quality={100}
             width={width}
             height={height}
             style={{ width, height }}

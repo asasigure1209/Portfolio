@@ -19,6 +19,9 @@ export default function Home() {
             <Image
               src={`/photos/${photo.fileName}`}
               fill
+              quality={100}
+              placeholder="blur"
+              blurDataURL={photo.blurDataURL}
               alt={photo.alt}
               sizes="(max-width: 768px) 100vw, 492px"
               className="object-cover"
